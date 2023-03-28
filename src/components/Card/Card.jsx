@@ -7,7 +7,7 @@ const Card = (props) => {
     return (
         <>
             <div className=" h-[450px] w-[300px] relative rounded-lg bg-base-100 border">
-                <figure className='px-4 py-4'><img className='rounded-lg w-full h-[200px]' src={img} alt="Shoes" /></figure>
+                <figure className='px-4 py-4'><img loading="lazy" className='rounded-lg w-full h-[200px]' src={img} alt="Shoes" /></figure>
                 <div className="px-4 py-4">
                     <h2 className="card-title">{name}</h2>
                     <h4 className='text-2xl mb-3'>Price : {price}$</h4>
