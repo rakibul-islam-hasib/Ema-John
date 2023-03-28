@@ -14,7 +14,7 @@ const Cart = ({ cart }) => {
             product.quantity = 1;
         }
         // product.quantity = product.quantity || 1 ; 
-        totalPrice = totalPrice + product?.props?.price || product.price;
+        totalPrice = totalPrice + product?.props?.price * product?.props?.quantity || product.price * product.quantity;
         totalShipping = totalShipping + product?.props?.shipping || product.price;
         quantity = quantity + product?.quantity || product?.props?.quantity;
         console.log(product.quantity)
@@ -31,7 +31,7 @@ const Cart = ({ cart }) => {
             <h6 className='text-[1.3em]'>Grand Total : {addCommas(grandTotal)}$</h6>
             <div className="">
                 <button className='py-2 text-white rounded-lg bg-[#FF3030] w-full font-semibold mt-12'>Clear Cart {trash}</button>
-                <button className='py-2 text-white rounded-lg bg-[#FF9900] w-full font-semibold mt-4'>Clear Cart {arrow}</button>
+                <button className='py-2 text-white rounded-lg bg-[#ff9900] w-full font-semibold mt-4'>Clear Cart {arrow}</button>
             </div>
         </div>
     );
