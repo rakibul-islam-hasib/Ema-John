@@ -4,20 +4,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 let trash = <FontAwesomeIcon icon={faTrashCan} />
 let arrow = <FontAwesomeIcon icon={faArrowRight} />
-const Cart = ({ cart }) => {
-
+const Cart = (props) => {
+    const cart = props.cart;
     let totalPrice = 0;
     let totalShipping = 0;
     let quantity = 0;
+    console.log(props)
     for (const product of cart) {
         if (product.quantity === 0) {
             product.quantity = 1;
         }
         // product.quantity = product.quantity || 1 ; 
-        totalPrice = totalPrice + product?.props?.price * product?.props?.quantity || product.price * product.quantity;
-        totalShipping = totalShipping + product?.props?.shipping || product.price;
-        quantity = quantity + product?.quantity || product?.props?.quantity;
-        console.log(product.quantity)
+        totalPrice = totalPrice + product.price * product.quantity;
+        totalShipping = totalShipping + product.shipping * product.quantity;
+        quantity = quantity + product.quantity ;
+        // console.log(product.quantity)
     }
     let tax = totalPrice * 2 / 100;
     let grandTotal = totalPrice + totalShipping + tax;
