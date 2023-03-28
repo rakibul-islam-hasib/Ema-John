@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/images/Logo.svg'
 const NavBar = () => {
     return (
-        <nav className='bg-[#1C2B35] w-full '>
+        <nav className='bg-[#1C2B35] w-full sticky top-0 z-10 '>
             <div className="w-[90%] mx-auto flex items-center justify-between px-3 py-3">
                 <div className="">
                     <img src={logo} alt="" />
