@@ -1,18 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
 import Cart from '../Cart/Cart';
+import { addToDb, getShoppingCart } from '../Utilities/fakedb';
 
 const Shop = () => {
-    const [products , setProducts] = useState([]) ; 
-    useEffect(()=> {
+    const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+    useEffect(() => {
         fetch('products.json')
-        .then(res=>res.json())
-        .then(data => setProducts(data))
-    }, []); 
-    const [cart , setCart] = useState([]); 
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, []);
+
+    useEffect(() => {
+        const storedDB = getShoppingCart();
+        // console.log(storedDB)
+        const storedCart = [];
+        // step 1 get id 
+        for (const id in storedDB) {
+            // step 2 get the product by using id 
+            const savedProduct = products.find(product => product.id === id);
+            // console.log(savedProduct) 
+            // Step 3 get the quantity from the store 
+            if (savedProduct) {
+                const quantity = storedDB[id];
+                savedProduct.quantity = quantity;
+                storedCart.push(savedProduct);
+                // console.log(savedProduct)
+            }
+        }
+        setCart(storedCart) ; 
+        // console.log(storedCart)
+    }, [products]);
+
     const handelCart = (id) => {
-        const neCart = [...cart , id] ; 
-        setCart(neCart)
+        const neCart = [...cart, id];
+        setCart(neCart);
+        addToDb(id.props.id)
+        // console.log(id.props)
     }
     return (
         <div>

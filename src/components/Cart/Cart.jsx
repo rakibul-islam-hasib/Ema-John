@@ -5,12 +5,14 @@ import { faTrashCan , faArrowRight} from '@fortawesome/free-solid-svg-icons';
 let trash = <FontAwesomeIcon icon={faTrashCan} />
 let arrow = <FontAwesomeIcon icon={faArrowRight} />
 const Cart = ({ cart }) => {
-    // console.log(cart) 
+    
     let totalPrice = 0;
     let totalShipping = 0 ; 
     for (const product of cart) {
-        totalPrice = totalPrice + product.props.price; 
-        totalShipping = totalShipping + product.props.shipping ; 
+        // product.quantity = product.quantity || 1 ; 
+        totalPrice = totalPrice + product?.props?.price  || product.price; 
+        totalShipping = totalShipping + product?.props?.shipping || product.price; 
+        console.log(product.quantity)
     }
     let tax = totalPrice*2/100 ; 
     let grandTotal = totalPrice + totalShipping + tax ; 
